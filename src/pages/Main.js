@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import DateView from '../components/DateView';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -81,20 +83,20 @@ const Main = () => {
                         id="panel1a-header"
                     >
                         <TableRow key={event.id}>
-                            <TableCell>{event.name}</TableCell>
-                            <TableCell>{event.date}</TableCell>
+                        <Typography>{event.name}</Typography>
                         </TableRow>
-                        {/* <Typography>{event.name}</Typography>
-                        <Typography>Testing another entry</Typography> */}
+
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Typography>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                            sit amet blandit leo lobortis eget.
+
+                            {event.date} <br/>
+                            {event.type} <br/>
+                            {event.details}
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-        
+
         
         // <TableRow key={event.id}>
         //             <TableCell>{event.name}</TableCell>
@@ -104,6 +106,9 @@ const Main = () => {
 
     return (
         <div id="main_container">
+
+            <DateView />
+
             <TableContainer>
                 <Table>
                     <TableHead>
