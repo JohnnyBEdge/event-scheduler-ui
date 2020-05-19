@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import DateView from '../components/DateView';
+import AddEvent from '../components/AddEvent';
+
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,17 +16,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-// import TableSortLabel from '@material-ui/core/TableSortLabel';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
-// import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Switch from '@material-ui/core/Switch';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import FilterListIcon from '@material-ui/icons/FilterList';
 
 const Main = () => {
 
@@ -41,39 +32,6 @@ const Main = () => {
     useEffect(() => {
         fetchData();
     },[]);
-
-    // descendingComparator = (a, b, orderBy) =>  {
-    //     if (b[orderBy] < a[orderBy]) {
-    //       return -1;
-    //     }
-    //     if (b[orderBy] > a[orderBy]) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   }
-
-    // getComparator = (order, orderBy) => {
-    // return order === 'desc'
-    //     ? (a, b) => descendingComparator(a, b, orderBy)
-    //     : (a, b) => -descendingComparator(a, b, orderBy);
-    // }
-
-    // stableSort = (array, comparator) => {
-    //     const stabilizedThis = array.map((el, index) => [el, index]);
-    //     stabilizedThis.sort((a, b) => {
-    //       const order = comparator(a[0], b[0]);
-    //       if (order !== 0) return order;
-    //       return a[1] - b[1];
-    //     });
-    //     return stabilizedThis.map((el) => el[0]);
-    //   }
-
-    //   EnhancedTableHead = (props) => {
-    //     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-    //     const createSortHandler = (property) => (event) => {
-    //       onRequestSort(event, property);
-    //     };
-
 
     const displayEvent = events.map((event) => {
         return  <ExpansionPanel>
@@ -97,11 +55,6 @@ const Main = () => {
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
 
-        
-        // <TableRow key={event.id}>
-        //             <TableCell>{event.name}</TableCell>
-        //             <TableCell>{event.date}</TableCell>
-        //         </TableRow>
     })
 
     return (
@@ -124,21 +77,7 @@ const Main = () => {
                 </Table>
             </TableContainer>
 
-            {/* <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography>Expansion Panel 1</Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel> */}
+            <AddEvent />
         </div>
     )
 };

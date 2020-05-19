@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Main from './pages/Main';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Main />
+    <MuiPickersUtilsProvider utils={MomentUtils}>
+      <Main />
+    </MuiPickersUtilsProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

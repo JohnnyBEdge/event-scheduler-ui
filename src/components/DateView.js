@@ -15,13 +15,21 @@ const DateView = () => {
             setCurrent(0)
         } else {
             setCurrent(current + 1)
-        }
-    }
+        };
+    };
+    const handlePrev = () => {
+        if(current === 0){
+            setCurrent(views.length - 1)
+        } else {
+            setCurrent(current - 1)
+        };
+    };
+
 
     return(
         <TableRow>
             <TableCell>
-                <NavigateBeforeIcon />
+                <NavigateBeforeIcon onClick={() => handlePrev()}/>
                 {views[current]}
                 <NavigateNextIcon onClick={() => handleNext()}/>
             </TableCell>
