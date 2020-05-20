@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styling/add-event-form.css';
-import Calendar from './Calendar';
-import TimePicker from './TimePicker';
+
 
 import FormControl from '@material-ui/core/FormControl';
 // import FormHelperText from '@material-ui/core/FormHelperText';
@@ -13,8 +12,31 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+// import { DatePicker } from "@material-ui/pickers";
+// import { KeyboardTimePicker } from "@material-ui/pickers";
+import { DateTimePicker } from "@material-ui/pickers";
 
 const AddEventForm = () => {
+
+    const [eventName, setEventName] = useState('');
+    const [eventType, setEventType] = useState('');
+    const [eventDetails, setEventDetails] = useState('');
+    const [eventDate, setEventDate] = useState(new Date());
+    // const [eventTime, setEventTime] = useState(new Date());
+
+    const handleDateChange = (date) => {
+        setEventDate(date);
+    };
+
+  function addNewEvent(){
+      fetch(`http://localhost:5005/api/events`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({eventName, eventType, eventDetails, eventDate})
+      }).then(setEventName(''),setEventType(''),setEventDetails(''),setEventDate(new Date()))
+  }
 
     return (
         <div id="add_event_form_container">
@@ -24,9 +46,9 @@ const AddEventForm = () => {
                 <InputLabel >Event Name</InputLabel>
                 <OutlinedInput 
                     id="component-outlined" 
-                    // value={eventName} 
-                    // onChange={handleChange} 
-                    // label="eventName" 
+                    value={eventName} 
+                    onChange={({target}) => setEventName(target.value)}
+                    label="eventName" 
                     />
             </FormControl>
             <br/>
@@ -36,8 +58,8 @@ const AddEventForm = () => {
                 <Select
                     labelId="select_event_label"
                     id="select_event"
-                    // value={age}
-                    // onChange={handleChange}
+                    value={eventType} 
+                    onChange={({target}) => setEventType(target.value)}
                     label="eventType"
                     >
                 <MenuItem value="">
@@ -55,25 +77,50 @@ const AddEventForm = () => {
                     label="Details"
                     multiline
                     rowsMax={4}
-                    // value={value}
-                    // onChange={handleChange}
+                    value={eventDetails} 
+                    onChange={({target}) => setEventDetails(target.value)}
                     variant="outlined"
                     />
             </FormControl>
 
             <FormControl fullWidth={true}>
-                <Calendar />
+                <DateTimePicker
+                    label="Event Date"
+                    value={eventDate}
+                    onChange={handleDateChange}
+                    animateYearScrolling
+                    disablePast={true}
+                    inputVariant="outlined"
+                    />
+            </FormControl>
+
+            {/* <FormControl fullWidth={true}>
+                <DatePicker
+                    label="Event Date"
+                    value={eventDate}
+                    onChange={handleDateChange}
+                    animateYearScrolling
+                    disablePast={true}
+                    inputVariant="outlined"
+                    />
             </FormControl>
             
             <FormControl fullWidth={true}>
-                <TimePicker />
-            </FormControl>
+                <KeyboardTimePicker
+                    label="Event time"
+                    placeholder="08:00 AM"
+                    mask="__:__ _M"
+                    value={eventTime}
+                    onChange={date => setEventTime(date)}
+                    inputVariant="outlined"
+                    />
+            </FormControl> */}
 
             <Button
                 variant="contained"
                 color="primary"
                 startIcon={<AddIcon />}
-                // onClick={() => {handleOpen()}}
+                onClick={() => addNewEvent()}
             >
             Add Event
             </Button>

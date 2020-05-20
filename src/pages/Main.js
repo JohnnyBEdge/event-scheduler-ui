@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import DateView from '../components/DateView';
 // import AddEvent from '../components/AddEvent';
 import AddEventForm from '../components/AddEventForm';
+import '../styling/main.css'
 
 
 import Table from '@material-ui/core/Table';
@@ -23,6 +24,7 @@ const Main = () => {
 
     const [events, setEvents] = useState([]);
     const [error, setError] = useState(false);
+    const [expanded, setExpanded] = useState(false);
 
     async function fetchData(){
         const res = await fetch("http://localhost:5005/api/events");
@@ -31,28 +33,33 @@ const Main = () => {
             .catch(err => setError(err)); 
     };
 
+    const handleChange = (id) => (event, isExpanded) => {
+        setExpanded(isExpanded ? id : false);
+      };
+
     useEffect(() => {
         fetchData();
     },[]);
 
     const displayEvent = events.map((event) => {
-        return  <ExpansionPanel>
+        return  <ExpansionPanel expanded={expanded == event._id} onChange={handleChange(event._id)}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
                         <TableRow key={event.id}>
-                        <Typography>{event.name}</Typography>
+                        <Typography>{event.eventName}</Typography>
+                        <Typography>{event.eventDate}</Typography>
+
                         </TableRow>
 
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <Typography>
 
-                            {event.date} <br/>
-                            {event.type} <br/>
-                            {event.details}
+                            {event.eventTime} <br/>
+                            {event.eventDetails}
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
@@ -79,11 +86,11 @@ const Main = () => {
                 </Table>
             </TableContainer>
 
-            <ExpansionPanel>
+            <ExpansionPanel >
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
-                        id="panel1a-header"
+                        id="add_event_panel_summary"
                     >
                         <TableRow>
                         <Typography>+ Add Event</Typography>
