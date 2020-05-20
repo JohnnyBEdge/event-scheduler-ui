@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import DateView from '../components/DateView';
 import DeleteEvent from '../components/DeleteEvent';
 import AddEventForm from '../components/AddEventForm';
+
 import '../styling/main.css';
 
 
@@ -29,7 +30,7 @@ const Main = () => {
     const [error, setError] = useState(false);
     const [expanded, setExpanded] = useState(false);
 
-    async function fetchData(){
+    async function getEvents(){
         const res = await fetch("http://localhost:5005/api/events");
             res.json()
             .then(res => setEvents(res))
@@ -41,7 +42,7 @@ const Main = () => {
       };
 
     useEffect(() => {
-        fetchData();
+        getEvents();
     },[]);
 
     const displayEvent = events.map((event) => {
@@ -59,7 +60,7 @@ const Main = () => {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails >
                         <Typography>
-                            
+
                             <div className="expansion-panel-details">
                                 <div className="event-info">
                                     {event.eventTime} 
@@ -67,7 +68,7 @@ const Main = () => {
                                 </div>
                                 <div className="event-functions">
                                     <EditOutlinedIcon />
-                                    <DeleteEvent id={event._id} />
+                                    <DeleteEvent id={event._id} refresh={getEvents}/>
                                 </div>
                             </div>
 
@@ -102,7 +103,7 @@ const Main = () => {
 
                     <ExpansionPanelDetails>
                         <Typography>
-                            <AddEventForm />
+                            <AddEventForm refresh={getEvents}/>
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>

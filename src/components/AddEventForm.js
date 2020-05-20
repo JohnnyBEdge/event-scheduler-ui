@@ -16,7 +16,7 @@ import AddIcon from '@material-ui/icons/Add';
 // import { KeyboardTimePicker } from "@material-ui/pickers";
 import { DateTimePicker } from "@material-ui/pickers";
 
-const AddEventForm = () => {
+const AddEventForm = (props) => {
 
     const [eventName, setEventName] = useState('');
     const [eventType, setEventType] = useState('');
@@ -36,6 +36,7 @@ const AddEventForm = () => {
         },
         body: JSON.stringify({eventName, eventType, eventDetails, eventDate})
       }).then(setEventName(''),setEventType(''),setEventDetails(''),setEventDate(new Date()))
+      .then(props.refresh)
   }
 
     return (

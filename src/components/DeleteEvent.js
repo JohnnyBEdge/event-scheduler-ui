@@ -8,7 +8,7 @@ const DeleteEvent = (props) => {
             fetch(`http://localhost:5005/api/events/${props.id}`,{
                 method: "DELETE"
             }).then(response => response.json())
-            //add get method to refresh events
+            .then(props.refresh)
         }
     }
 
