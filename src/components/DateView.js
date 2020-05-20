@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import '../styling/date-view.css'
 
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
@@ -27,12 +28,12 @@ const DateView = () => {
 
 
     return(
-        <TableRow>
-            <TableCell>
-                <NavigateBeforeIcon onClick={() => handlePrev()}/>
+        <TableRow >
+            <div id="date_view">
+                <NavigateBeforeIcon id="before" onClick={() => handlePrev()}/>
                 {views[current]}
-                <NavigateNextIcon onClick={() => handleNext()}/>
-            </TableCell>
+                <NavigateNextIcon id="next" onClick={() => handleNext()}/>
+            </div>
         </TableRow>
     )
 };

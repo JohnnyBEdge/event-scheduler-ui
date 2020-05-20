@@ -52,10 +52,10 @@ const Main = () => {
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
-                        <TableRow key={event.id}>
-                        <Typography>{event.eventName}</Typography>
-                        <Typography>{event.eventDate}</Typography>
-                        </TableRow>
+                        <div key={event.id} className="expansion-panel-summary">
+                        <Typography><p className="event-name">{event.eventName}</p></Typography>
+                        <Typography><p className="event-date">{event.eventDate}</p></Typography>
+                        </div>
 
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails >
@@ -84,13 +84,8 @@ const Main = () => {
 
             <DateView />
 
-            <TableContainer>
-                <Table>
-                    <TableBody>
-                        {displayEvent}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+            {displayEvent}
+
 
             <ExpansionPanel >
                     <ExpansionPanelSummary
@@ -98,7 +93,7 @@ const Main = () => {
                         aria-controls="panel1a-content"
                         id="add_event_panel_summary"
                         >
-                        <Typography>+ Add Event</Typography>
+                        <Typography id="add_event_btn">+ Add Event</Typography>
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
