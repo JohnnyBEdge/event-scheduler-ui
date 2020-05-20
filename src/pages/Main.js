@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import DateView from '../components/DateView';
-// import AddEvent from '../components/AddEvent';
+import DeleteEvent from '../components/DeleteEvent';
 import AddEventForm from '../components/AddEventForm';
-import '../styling/main.css'
+import '../styling/main.css';
+
 
 
 import Table from '@material-ui/core/Table';
@@ -17,6 +18,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 
 
@@ -51,15 +54,24 @@ const Main = () => {
                         <TableRow key={event.id}>
                         <Typography>{event.eventName}</Typography>
                         <Typography>{event.eventDate}</Typography>
-
                         </TableRow>
 
                     </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
+                    <ExpansionPanelDetails >
                         <Typography>
+                            
+                            <div className="expansion-panel-details">
+                                <div className="event-info">
+                                    {event.eventTime} 
+                                    {event.eventDetails}
+                                </div>
+                                <div className="event-functions">
+                                    <EditOutlinedIcon />
+                                    <DeleteEvent id={event._id} />
+                                </div>
+                            </div>
 
-                            {event.eventTime} <br/>
-                            {event.eventDetails}
+
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
@@ -73,13 +85,6 @@ const Main = () => {
 
             <TableContainer>
                 <Table>
-                    {/* <TableHead>
-                        <TableRow>
-                            <TableCell> Event </TableCell>
-                            <TableCell> Date </TableCell>
-                        </TableRow>
-                    </TableHead> */}
-
                     <TableBody>
                         {displayEvent}
                     </TableBody>
@@ -91,20 +96,16 @@ const Main = () => {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="add_event_panel_summary"
-                    >
-                        <TableRow>
+                        >
                         <Typography>+ Add Event</Typography>
-                        </TableRow>
-
                     </ExpansionPanelSummary>
+
                     <ExpansionPanelDetails>
                         <Typography>
                             <AddEventForm />
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-
-            {/* <AddEvent /> */}
         </div>
     )
 };
