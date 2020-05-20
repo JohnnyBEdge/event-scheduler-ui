@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import DateView from '../components/DateView';
-import AddEvent from '../components/AddEvent';
+// import AddEvent from '../components/AddEvent';
+import AddEventForm from '../components/AddEventForm';
 
 
 import Table from '@material-ui/core/Table';
@@ -15,6 +16,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 
 
 const Main = () => {
@@ -64,12 +66,12 @@ const Main = () => {
 
             <TableContainer>
                 <Table>
-                    <TableHead>
+                    {/* <TableHead>
                         <TableRow>
                             <TableCell> Event </TableCell>
                             <TableCell> Date </TableCell>
                         </TableRow>
-                    </TableHead>
+                    </TableHead> */}
 
                     <TableBody>
                         {displayEvent}
@@ -77,7 +79,25 @@ const Main = () => {
                 </Table>
             </TableContainer>
 
-            <AddEvent />
+            <ExpansionPanel>
+                    <ExpansionPanelSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                    >
+                        <TableRow>
+                        <Typography>+ Add Event</Typography>
+                        </TableRow>
+
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <Typography>
+                            <AddEventForm />
+                        </Typography>
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+
+            {/* <AddEvent /> */}
         </div>
     )
 };

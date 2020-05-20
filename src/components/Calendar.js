@@ -16,6 +16,9 @@ const Calendar = () => {
             value={date}
             onChange={handleDateChange}
             animateYearScrolling
+            disablePast={true}
+            inputVariant="outlined"
+            
             />
       </div>
       )

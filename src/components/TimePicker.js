@@ -7,11 +7,12 @@ const TimePicker = () => {
 
   return (
     <KeyboardTimePicker
-      label="Masked timepicker"
+      label="Event time"
       placeholder="08:00 AM"
       mask="__:__ _M"
       value={time}
       onChange={date => setTime(date)}
+      inputVariant="outlined"
     />
   );
 }
