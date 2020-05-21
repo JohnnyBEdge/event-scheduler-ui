@@ -41,6 +41,25 @@ const Main = () => {
         setExpanded(isExpanded ? id : false);
       };
 
+      function formatDate(eDate){
+        let date = new Date(eDate)
+      
+        let localDateString = date.toLocaleDateString(undefined, {  
+          day : 'numeric',
+          month : 'short',
+          year : 'numeric'
+      })
+      
+      let localTimeString = date.toLocaleTimeString(undefined, {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+      })
+      
+      return localDateString +" "+ localTimeString
+      
+      }
+
     useEffect(() => {
         getEvents();
     },[]);
@@ -54,7 +73,7 @@ const Main = () => {
                     >
                         <div key={event.id} className="expansion-panel-summary">
                         <Typography><p className="event-name">{event.eventName}</p></Typography>
-                        <Typography><p className="event-date">{event.eventDate}</p></Typography>
+                        <Typography><p className="event-date">{formatDate(event.eventDate)}</p></Typography>
                         </div>
 
                     </ExpansionPanelSummary>
