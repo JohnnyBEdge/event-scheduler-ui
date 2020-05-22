@@ -1,9 +1,16 @@
 #date_view {
     font-size: 30px;
     font-weight: bold;
-
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    min-height: 70px;
+    background-color: #1976D2;
+    border-radius: 5px;
 }
 
-#before, #next {
+#before, #next, #view_display {
     font-size: 40px;
+    align-self: center;
+    color: whitesmoke;
 }

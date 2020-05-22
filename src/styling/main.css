@@ -1,11 +1,26 @@
 
-
+/* 
 .expansion-panel-summary {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+} */
+
+/* .MuiExpansionPanelDetails-root {
+    background-color: red;
 }
+
+.MuiExpansionPanelSummary-root {
+    background-color: green;
+}
+
+.MuiButtonBase {
+    background-color: yellow;
+} */
+/* .expansion-panel-summary{
+    background-color: red;
+} */
 
 .event-name {
     font-size: 20px;

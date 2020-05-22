@@ -31,7 +31,7 @@ const DateView = (props) => {
         < >
             <div id="date_view">
                 <NavigateBeforeIcon id="before" onClick={() => handlePrev()} />
-                {views[props.current]}
+                <div id="view_display">{views[props.current]}</div>
                 <NavigateNextIcon id="next" onClick={() => handleNext()}/>
             </div>
         </>

@@ -8,7 +8,6 @@ import '../styling/main.css';
 
 
 import moment from 'moment';
-import Moment from 'react-moment';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -26,15 +25,6 @@ const Main = () => {
     const [error, setError] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const [current, setCurrent] = useState(0);
- 
-
-    // const viewFunctions = {
-    //     isToday: (date) => {return moment(date).day() === moment().day()},
-    //     isWeek: (date) => moment(date).isoWeek() === moment().isoWeek(),
-    //     isMonth: (date) => moment(date).month() === moment().month()
-    // };
-
-    // const [viewFunc, setViewFunction] = useState(viewFunctions.isToday);
 
     async function getEvents(){
         const res = await fetch("http://localhost:5005/api/events");
@@ -72,16 +62,6 @@ console.log("current: ", current)
         getEvents();
     },[]);
 
-    // const handleViewFunction = () => {
-    //     if(current === 0){
-    //         setViewFunction(viewFunctions.isToday)
-    //       } else if(current === 1){
-    //         setViewFunction(viewFunctions.isWeek)
-    //       } else if(current === 2){
-    //         setViewFunction(viewFunctions.isMonth)
-    //       };
-    // };
-
 
     function isToday(date){
       return moment(date).day() === moment().day() && moment(date).year() === moment().year();
@@ -106,11 +86,11 @@ console.log("current: ", current)
     };
     
     const sorted = filtered().sort((a,b) => new Date(a.eventDate) - new Date(b.eventDate))
-    console.log("sorted",sorted)
 
-    // const displayEvent = events.map((event) => {
     const displayEvent = sorted.map((event) => {
-        return  <ExpansionPanel expanded={expanded == event._id} onChange={handleChange(event._id)}>
+        return  <ExpansionPanel 
+                    expanded={expanded == event._id} 
+                    onChange={handleChange(event._id)}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -150,7 +130,6 @@ console.log("current: ", current)
             <DateView 
                 setCurrent={setCurrent}
                 current={current}
-                // onClick={handleViewFunction}
                 />
 
             {displayEvent}
