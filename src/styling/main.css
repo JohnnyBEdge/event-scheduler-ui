@@ -7,25 +7,22 @@
     width: 100%;
 } */
 
-/* .MuiExpansionPanelDetails-root {
-    background-color: red;
-}
-
-.MuiExpansionPanelSummary-root {
-    background-color: green;
-}
-
-.MuiButtonBase {
-    background-color: yellow;
-} */
-/* .expansion-panel-summary{
-    background-color: red;
-} */
-
-.event-name {
-    font-size: 20px;
+.event-name{
+    font-size: 25px;
+    font-weight: bold;
     margin: 2px;
     padding: 0;
+    color: rgb(70, 67, 67);
+}
+
+.expansion-panel-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+.event-info {
+    font-size: 20px;
 }
 
 .event-date {
@@ -35,13 +32,12 @@
     padding: 0;
 }
 
-.expansion-panel-details {
-    display: flex;
-    width: 100%;
+.event-functions {
+    margin-right: 30px;
 }
 
-.event-name {
-    font-weight: bold;
+.MuiSvgIcon-root {
+    padding-left: 10px;
 }
 
 #add_event_button {

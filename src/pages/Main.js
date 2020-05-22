@@ -107,7 +107,6 @@ console.log("current: ", current)
 
                             <div className="expansion-panel-details">
                                 <div className="event-info">
-                                    {event.eventTime} 
                                     {event.eventDetails}
                                 </div>
                                 <div className="event-functions">
