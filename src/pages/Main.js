@@ -3,16 +3,12 @@ import DateView from '../components/DateView';
 import DeleteEvent from '../components/DeleteEvent';
 import AddEventForm from '../components/AddEventForm';
 
+
 import '../styling/main.css';
 
 
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import moment from 'moment';
+import Moment from 'react-moment';
 
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -29,6 +25,16 @@ const Main = () => {
     const [events, setEvents] = useState([]);
     const [error, setError] = useState(false);
     const [expanded, setExpanded] = useState(false);
+    const [current, setCurrent] = useState(0);
+ 
+
+    // const viewFunctions = {
+    //     isToday: (date) => {return moment(date).day() === moment().day()},
+    //     isWeek: (date) => moment(date).isoWeek() === moment().isoWeek(),
+    //     isMonth: (date) => moment(date).month() === moment().month()
+    // };
+
+    // const [viewFunc, setViewFunction] = useState(viewFunctions.isToday);
 
     async function getEvents(){
         const res = await fetch("http://localhost:5005/api/events");
@@ -37,34 +43,73 @@ const Main = () => {
             .catch(err => setError(err)); 
     };
 
+console.log("current: ", current)
+
     const handleChange = (id) => (event, isExpanded) => {
         setExpanded(isExpanded ? id : false);
       };
 
-      function formatDate(eDate){
-        let date = new Date(eDate)
-      
+    function formatDate(eDate){
+        let date = new Date(eDate);
+        
         let localDateString = date.toLocaleDateString(undefined, {  
-          day : 'numeric',
-          month : 'short',
-          year : 'numeric'
-      })
-      
-      let localTimeString = date.toLocaleTimeString(undefined, {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit'
-      })
-      
-      return localDateString +" "+ localTimeString
-      
-      }
+            day : 'numeric',
+            month : 'short',
+            year : 'numeric'
+        });
+        
+        let localTimeString = date.toLocaleTimeString(undefined, {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+        
+    return localDateString +" "+ localTimeString;
+    
+    };
 
     useEffect(() => {
         getEvents();
     },[]);
 
-    const displayEvent = events.map((event) => {
+    // const handleViewFunction = () => {
+    //     if(current === 0){
+    //         setViewFunction(viewFunctions.isToday)
+    //       } else if(current === 1){
+    //         setViewFunction(viewFunctions.isWeek)
+    //       } else if(current === 2){
+    //         setViewFunction(viewFunctions.isMonth)
+    //       };
+    // };
+
+
+    function isToday(date){
+      return moment(date).day() === moment().day() && moment(date).year() === moment().year();
+    };
+    function isWeek(date){
+      return moment(date).week() === moment().isoWeek() && moment(date).year() === moment().year();
+    };
+    function isMonth(date){
+      return moment(date).month() === moment().month() && moment(date).year() === moment().year();
+    };
+
+    const filtered = () => {
+        if(current === 0){
+            return events.filter(date => isToday(date.eventDate))
+          } else if(current === 1){
+            return events.filter(date => isWeek(date.eventDate))
+          } else if(current === 2){
+            return events.filter(date => isMonth(date.eventDate))
+          } else {
+              return events;
+          }
+    };
+    
+    const sorted = filtered().sort((a,b) => new Date(a.eventDate) - new Date(b.eventDate))
+    console.log("sorted",sorted)
+
+    // const displayEvent = events.map((event) => {
+    const displayEvent = sorted.map((event) => {
         return  <ExpansionPanel expanded={expanded == event._id} onChange={handleChange(event._id)}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -95,13 +140,18 @@ const Main = () => {
                         </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-
+  
     })
 
     return (
+        
         <div id="main_container">
 
-            <DateView />
+            <DateView 
+                setCurrent={setCurrent}
+                current={current}
+                // onClick={handleViewFunction}
+                />
 
             {displayEvent}
 
