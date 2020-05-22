@@ -13,7 +13,7 @@ const DeleteEvent = (props) => {
     }
 
     return (
-        <DeleteOutlinedIcon onClick={() =>{handleDelete()}}/>
+        <DeleteOutlinedIcon  color="error" onClick={() =>{handleDelete()}}/>
     )
 }
 

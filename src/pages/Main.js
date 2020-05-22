@@ -97,8 +97,9 @@ console.log("current: ", current)
                         id="panel1a-header"
                     >
                         <div key={event.id} className="expansion-panel-summary">
-                        <Typography><p className="event-name">{event.eventName}</p></Typography>
-                        <Typography><p className="event-date">{formatDate(event.eventDate)}</p></Typography>
+                        <Typography classes={{label: 'my-class-name'}}>{event.eventName}</Typography>
+                        {/* <Typography><p className="event-name">{event.eventName}</p></Typography> */}
+                        <Typography><p className={"event-date"}> {formatDate(event.eventDate)}</p></Typography>
                         </div>
 
                     </ExpansionPanelSummary>
@@ -110,7 +111,7 @@ console.log("current: ", current)
                                     {event.eventDetails}
                                 </div>
                                 <div className="event-functions">
-                                    <EditOutlinedIcon />
+                                    <EditOutlinedIcon color="action" />
                                     <DeleteEvent id={event._id} refresh={getEvents}/>
                                 </div>
                             </div>

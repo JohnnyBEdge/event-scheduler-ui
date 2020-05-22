@@ -3,8 +3,6 @@ import '../styling/add-event-form.css';
 
 
 import FormControl from '@material-ui/core/FormControl';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-// import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Select from '@material-ui/core/Select';
@@ -12,9 +10,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-// import { DatePicker } from "@material-ui/pickers";
-// import { KeyboardTimePicker } from "@material-ui/pickers";
 import { DateTimePicker } from "@material-ui/pickers";
+import styled from 'styled-components';
 
 const AddEventForm = (props) => {
 
@@ -22,7 +19,18 @@ const AddEventForm = (props) => {
     const [eventType, setEventType] = useState('');
     const [eventDetails, setEventDetails] = useState('');
     const [eventDate, setEventDate] = useState(new Date());
-    // const [eventTime, setEventTime] = useState(new Date());
+
+    const StyledButton = styled(Button)`
+        background-color: #6772e5;
+        color: #fff;
+        width: 100%;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        height: 60px;
+        margin: 0 auto;
+        margin-top: 15px;
+        &:hover {
+            background-color: #5469d4;
+    }`;
 
     const handleDateChange = (date) => {
         setEventDate(date);
@@ -95,36 +103,21 @@ const AddEventForm = (props) => {
                     />
             </FormControl>
 
-            {/* <FormControl fullWidth={true}>
-                <DatePicker
-                    label="Event Date"
-                    value={eventDate}
-                    onChange={handleDateChange}
-                    animateYearScrolling
-                    disablePast={true}
-                    inputVariant="outlined"
-                    />
-            </FormControl>
-            
-            <FormControl fullWidth={true}>
-                <KeyboardTimePicker
-                    label="Event time"
-                    placeholder="08:00 AM"
-                    mask="__:__ _M"
-                    value={eventTime}
-                    onChange={date => setEventTime(date)}
-                    inputVariant="outlined"
-                    />
-            </FormControl> */}
-
-            <Button
+            {/* <Button
                 variant="contained"
                 color="primary"
                 startIcon={<AddIcon />}
                 onClick={() => addNewEvent()}
             >
             Add Event
-            </Button>
+            </Button> */}
+            <StyledButton
+                variant="contained"
+                color="primary"
+                startIcon={<AddIcon />}
+                onClick={() => addNewEvent()}
+            >Add Event
+            </StyledButton>
         </div>
     )
 };

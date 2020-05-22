@@ -1,4 +1,6 @@
-
+#main_container {
+    background-color: rgb(223, 217, 217);
+}
 /* 
 .expansion-panel-summary {
     display: flex;
@@ -6,6 +8,9 @@
     align-items: center;
     width: 100%;
 } */
+.test {
+    font-weight: bold;
+}
 
 .event-name{
     font-size: 25px;
@@ -18,7 +23,7 @@
 .expansion-panel-details {
     display: flex;
     justify-content: space-between;
-    width: 100vw;
+    width: 93vw;
 }
 
 .event-info {
@@ -26,14 +31,10 @@
 }
 
 .event-date {
-    font-size: 12x;
+    font-size: 12px;
     color: grey;
     margin: 2px;
     padding: 0;
-}
-
-.event-functions {
-    margin-right: 30px;
 }
 
 .MuiSvgIcon-root {
@@ -55,4 +56,17 @@
     font-weight: bold;
     font-size: 25px;
     margin: 0 auto;
+}
+
+.MuiInputBase-root {
+    margin: 7px;
+    width: 88vw;
+}
+
+/* .MuiButtonBase-root {
+    width: 88vw;
+} */
+
+.my-class-name {
+    color: red
 }
