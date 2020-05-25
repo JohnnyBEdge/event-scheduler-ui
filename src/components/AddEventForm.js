@@ -42,7 +42,7 @@ const AddEventForm = (props) => {
     //     }
     // }
 
-  function addNewEvent(){
+  function addNewEvent(props){
       fetch(`http://localhost:5005/api/events`,{
         method: "POST",
         headers: {
@@ -116,7 +116,7 @@ const AddEventForm = (props) => {
                 color="primary"
                 startIcon={<AddIcon />}
                 onClick={() => addNewEvent()}
-            >Add Event
+            >{props.eventMode}
             </StyledButton>
         </div>
     )

@@ -22,12 +22,11 @@ const Main = () => {
     const [events, setEvents] = useState([]);
     const [error, setError] = useState(false);
     const [expanded, setExpanded] = useState(false);
+    const [expandForm, setExpandForm] = useState(false);
     const [current, setCurrent] = useState(0);
-    const [eventMode, setMode] = useState("Add Event")
+    const [eventMode, setMode] = useState("Add Event");
 
 
-    // const [modal, setModal] = useState(false);
-    // const toggleModal = () => setModal(!modal);
 
     async function getEvents(){
         const res = await fetch("http://localhost:5005/api/events");
@@ -40,6 +39,11 @@ const Main = () => {
     const handleChange = (id) => (event, isExpanded) => {
         setExpanded(isExpanded ? id : false);
       };
+
+    const handleExpandedForm = () => {
+        setExpandForm(expandForm ? false : true);
+        setMode("Update Event");
+    }
 
     function formatDate(eDate){
         let date = new Date(eDate);
@@ -60,7 +64,6 @@ const Main = () => {
     
     };
 
-    // const toggleModal = () => setModal(!modal);
 
     useEffect(() => {
         getEvents();
@@ -113,7 +116,7 @@ const Main = () => {
                                 <p>{event.eventDetails}</p>
                             </div>
                             <div className="event-functions">
-                                <EditOutlinedIcon color="action" />
+                                <EditOutlinedIcon color="action" onClick={handleExpandedForm}/>
                                 <DeleteEvent id={event._id} refresh={getEvents}/>
                             </div>
                         </div>
@@ -134,8 +137,9 @@ const Main = () => {
             {displayEvent}
 
 
-            <ExpansionPanel >
+            <ExpansionPanel expanded={expandForm}>
                     <ExpansionPanelSummary
+                        onClick={handleExpandedForm}
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="add_event_panel_summary"
@@ -144,7 +148,7 @@ const Main = () => {
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
-                        <AddEventForm refresh={getEvents}/>
+                        <AddEventForm refresh={getEvents} eventMode={eventMode}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
         </div>
