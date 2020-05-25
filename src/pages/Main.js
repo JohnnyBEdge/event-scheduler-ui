@@ -3,12 +3,10 @@ import DateView from '../components/DateView';
 import DeleteEvent from '../components/DeleteEvent';
 import AddEventForm from '../components/AddEventForm';
 
-
 import '../styling/main.css';
 
 
 import moment from 'moment';
-
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -25,6 +23,11 @@ const Main = () => {
     const [error, setError] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const [current, setCurrent] = useState(0);
+    const [eventMode, setMode] = useState("Add Event")
+
+
+    // const [modal, setModal] = useState(false);
+    // const toggleModal = () => setModal(!modal);
 
     async function getEvents(){
         const res = await fetch("http://localhost:5005/api/events");
@@ -33,7 +36,6 @@ const Main = () => {
             .catch(err => setError(err)); 
     };
 
-console.log("current: ", current)
 
     const handleChange = (id) => (event, isExpanded) => {
         setExpanded(isExpanded ? id : false);
@@ -57,6 +59,8 @@ console.log("current: ", current)
     return localDateString +" "+ localTimeString;
     
     };
+
+    // const toggleModal = () => setModal(!modal);
 
     useEffect(() => {
         getEvents();
@@ -97,27 +101,23 @@ console.log("current: ", current)
                         id="panel1a-header"
                     >
                         <div key={event.id} className="expansion-panel-summary">
-                        <Typography classes={{label: 'my-class-name'}}>{event.eventName}</Typography>
-                        {/* <Typography><p className="event-name">{event.eventName}</p></Typography> */}
-                        <Typography><p className={"event-date"}> {formatDate(event.eventDate)}</p></Typography>
+                            <p>{event.eventName}</p>
+                            <p className={"event-date"}> {formatDate(event.eventDate)}</p>
                         </div>
 
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails >
-                        <Typography>
 
-                            <div className="expansion-panel-details">
-                                <div className="event-info">
-                                    {event.eventDetails}
-                                </div>
-                                <div className="event-functions">
-                                    <EditOutlinedIcon color="action" />
-                                    <DeleteEvent id={event._id} refresh={getEvents}/>
-                                </div>
+                        <div className="expansion-panel-details">
+                            <div className="event-info">
+                                <p>{event.eventDetails}</p>
                             </div>
+                            <div className="event-functions">
+                                <EditOutlinedIcon color="action" />
+                                <DeleteEvent id={event._id} refresh={getEvents}/>
+                            </div>
+                        </div>
 
-
-                        </Typography>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
   
@@ -126,7 +126,6 @@ console.log("current: ", current)
     return (
         
         <div id="main_container">
-
             <DateView 
                 setCurrent={setCurrent}
                 current={current}
@@ -141,13 +140,11 @@ console.log("current: ", current)
                         aria-controls="panel1a-content"
                         id="add_event_panel_summary"
                         >
-                        <Typography id="add_event_btn">+ Add Event</Typography>
+                        <div id="add_event_btn">+{eventMode}</div>
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
-                        <Typography>
-                            <AddEventForm refresh={getEvents}/>
-                        </Typography>
+                        <AddEventForm refresh={getEvents}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
         </div>

@@ -36,6 +36,12 @@ const AddEventForm = (props) => {
         setEventDate(date);
     };
 
+    // function validate(){
+    //     if(eventName === ''){
+    //         alert("Please add an event name.")
+    //     }
+    // }
+
   function addNewEvent(){
       fetch(`http://localhost:5005/api/events`,{
         method: "POST",
@@ -51,13 +57,15 @@ const AddEventForm = (props) => {
         <div id="add_event_form_container">
             <FormControl 
             variant="outlined"
-            fullWidth={true}>
+            fullWidth={true}
+            required={true}>
                 <InputLabel >Event Name</InputLabel>
                 <OutlinedInput 
                     id="component-outlined" 
                     value={eventName} 
                     onChange={({target}) => setEventName(target.value)}
                     label="eventName" 
+                    helperText="Incorrect entry."
                     />
             </FormControl>
             <br/>
@@ -103,14 +111,6 @@ const AddEventForm = (props) => {
                     />
             </FormControl>
 
-            {/* <Button
-                variant="contained"
-                color="primary"
-                startIcon={<AddIcon />}
-                onClick={() => addNewEvent()}
-            >
-            Add Event
-            </Button> */}
             <StyledButton
                 variant="contained"
                 color="primary"

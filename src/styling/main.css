@@ -1,16 +1,6 @@
 #main_container {
     background-color: rgb(223, 217, 217);
 }
-/* 
-.expansion-panel-summary {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-} */
-.test {
-    font-weight: bold;
-}
 
 .event-name{
     font-size: 25px;
@@ -61,12 +51,4 @@
 .MuiInputBase-root {
     margin: 7px;
     width: 88vw;
-}
-
-/* .MuiButtonBase-root {
-    width: 88vw;
-} */
-
-.my-class-name {
-    color: red
 }
