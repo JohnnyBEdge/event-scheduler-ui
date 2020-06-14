@@ -42,7 +42,7 @@ const Main = () => {
 
     const handleExpandedForm = () => {
         setExpandForm(expandForm ? false : true);
-        setMode("Update Event");
+        // setMode("Update Event");
     }
 
     function formatDate(eDate){
@@ -148,7 +148,7 @@ const Main = () => {
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
-                        <AddEventForm refresh={getEvents} eventMode={eventMode}/>
+                        <AddEventForm getEvents={getEvents} eventMode={eventMode}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
         </div>

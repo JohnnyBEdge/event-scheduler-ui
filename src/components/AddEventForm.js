@@ -12,6 +12,7 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { DateTimePicker } from "@material-ui/pickers";
 import styled from 'styled-components';
+import { makeStyles } from '@material-ui/core/styles';
 
 const AddEventForm = (props) => {
 
@@ -32,17 +33,17 @@ const AddEventForm = (props) => {
             background-color: #5469d4;
     }`;
 
+    const useStyles = makeStyles({
+        input: {
+          width: '98%',
+        },
+      });
+
     const handleDateChange = (date) => {
         setEventDate(date);
     };
 
-    // function validate(){
-    //     if(eventName === ''){
-    //         alert("Please add an event name.")
-    //     }
-    // }
-
-  function addNewEvent(props){
+  function addNewEvent(){
       fetch(`http://localhost:5005/api/events`,{
         method: "POST",
         headers: {
@@ -50,17 +51,20 @@ const AddEventForm = (props) => {
         },
         body: JSON.stringify({eventName, eventType, eventDetails, eventDate})
       }).then(setEventName(''),setEventType(''),setEventDetails(''),setEventDate(new Date()))
-      .then(props.refresh)
+      .then(props.getEvents)
   }
 
+  const classes = useStyles();
     return (
         <div id="add_event_form_container">
             <FormControl 
-            variant="outlined"
-            fullWidth={true}
-            required={true}>
+                
+                variant="outlined"
+                fullWidth={true}
+                required={true}>
                 <InputLabel >Event Name</InputLabel>
                 <OutlinedInput 
+                    className={classes.input}
                     id="component-outlined" 
                     value={eventName} 
                     onChange={({target}) => setEventName(target.value)}
@@ -70,9 +74,14 @@ const AddEventForm = (props) => {
             </FormControl>
             <br/>
 
-            <FormControl id="select_event_input" variant="outlined" fullWidth={true}>
+            <FormControl 
+                id="select_event_input" 
+                variant="outlined" 
+                fullWidth={true}
+                >
                 <InputLabel id="select_event_label">Event Type</InputLabel>
                 <Select
+                    className={classes.input}
                     labelId="select_event_label"
                     id="select_event"
                     value={eventType} 
@@ -88,8 +97,15 @@ const AddEventForm = (props) => {
                 </Select>
             </FormControl>
 
-            <FormControl fullWidth={true}>
+            <FormControl 
+                className={classes.input}
+                // style = {{width: 100}}
+                fullWidth={true}
+            >
                 <TextField
+                    fullWidth={true}
+                    
+                    // 
                     id="outlined-multiline-flexible"
                     label="Details"
                     multiline
@@ -100,8 +116,12 @@ const AddEventForm = (props) => {
                     />
             </FormControl>
 
-            <FormControl fullWidth={true}>
+            <FormControl 
+            className={classes.input}
+                
+                >
                 <DateTimePicker
+                    fullWidth={true}
                     label="Event Date"
                     value={eventDate}
                     onChange={handleDateChange}

@@ -1,5 +1,7 @@
 #main_container {
     background-color: rgb(223, 217, 217);
+    max-width: 500px;
+    margin: 0 auto;
 }
 
 .event-name{
