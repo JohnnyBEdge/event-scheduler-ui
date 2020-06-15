@@ -1,7 +1,10 @@
 #main_container {
-    background-color: rgb(223, 217, 217);
+    background-color: whitesmoke;
     max-width: 500px;
+    min-height: 500px;
     margin: 0 auto;
+    border: black solid 1px;
+    border-radius: 2px;
 }
 
 .event-name{
@@ -18,8 +21,9 @@
     width: 93vw;
 }
 
-.event-info {
+.event-details {
     font-size: 20px;
+    font-weight: 300;
 }
 
 .event-date {
@@ -40,7 +44,7 @@
 
 #add_event_panel_summary {
     background-color: #6AC27E;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 #add_event_panel_summary p {

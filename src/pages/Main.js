@@ -110,7 +110,7 @@ const Main = () => {
                         id="panel1a-header"
                     >
                         <div key={event.id} className="expansion-panel-summary">
-                            <p>{event.eventName}</p>
+                            <p className="event-name">{event.eventName}</p>
                             <p className={"event-date"}> {formatDate(event.eventDate)}</p>
                         </div>
 
@@ -119,7 +119,7 @@ const Main = () => {
 
                         <div className="expansion-panel-details">
                             <div className="event-info">
-                                <p>{event.eventDetails}</p>
+                                <p className="event-details" >{event.eventDetails}</p>
                             </div>
                             <div className="event-functions">
                                 <EditEventModal 
@@ -157,7 +157,9 @@ const Main = () => {
                         aria-controls="panel1a-content"
                         id="add_event_panel_summary"
                         >
-                        <div id="add_event_btn">+{eventMode}</div>
+                        <div >
+                            <p id="add_event_btn">+{eventMode}</p>
+                        </div>
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
