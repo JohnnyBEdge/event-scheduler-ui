@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import DateView from '../components/DateView';
 import DeleteEvent from '../components/DeleteEvent';
 import AddEventForm from '../components/AddEventForm';
-
+import EditEventModal from '../components/EditEventModal';
 import '../styling/main.css';
 
 
@@ -13,7 +13,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+
 
 
 
@@ -25,7 +25,7 @@ const Main = () => {
     const [expandForm, setExpandForm] = useState(false);
     const [current, setCurrent] = useState(0);
     const [eventMode, setMode] = useState("Add Event");
-
+    const [selected, setSelected] = useState("")
 
 
     async function getEvents(){
@@ -42,8 +42,14 @@ const Main = () => {
 
     const handleExpandedForm = () => {
         setExpandForm(expandForm ? false : true);
-        // setMode("Update Event");
     }
+
+    const toggleMode = () => {
+        eventMode === "Add Event" ?
+        setMode("Update Event")
+        : setMode("Add Event")
+    };
+    
 
     function formatDate(eDate){
         let date = new Date(eDate);
@@ -116,8 +122,15 @@ const Main = () => {
                                 <p>{event.eventDetails}</p>
                             </div>
                             <div className="event-functions">
-                                <EditOutlinedIcon color="action" onClick={handleExpandedForm}/>
-                                <DeleteEvent id={event._id} refresh={getEvents}/>
+                                <EditEventModal 
+                                    event={event}
+                                    refresh={getEvents} 
+                                />
+                                <DeleteEvent 
+                                    id={event._id} 
+                                    refresh={getEvents}
+                                />
+
                             </div>
                         </div>
 
@@ -148,7 +161,7 @@ const Main = () => {
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
-                        <AddEventForm getEvents={getEvents} eventMode={eventMode}/>
+                        <AddEventForm getEvents={getEvents} eventMode={eventMode} selected={selected}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
         </div>

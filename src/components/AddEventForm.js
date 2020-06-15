@@ -20,6 +20,18 @@ const AddEventForm = (props) => {
     const [eventType, setEventType] = useState('');
     const [eventDetails, setEventDetails] = useState('');
     const [eventDate, setEventDate] = useState(new Date());
+    // const [selected] = useState(props.selected)
+
+// const turnEdit =() => {
+//     props.selected !== null ? 
+//         (setEventName(props.selected.eventName),
+//         setEventType(props.selected.eventType),
+//         setEventDetails(props.selected.eventDetails),
+//         setEventDate(props.selected.eventDate))
+//         : ""
+//     }
+
+        // console.log("selected ", props.selected)
 
     const StyledButton = styled(Button)`
         background-color: #6772e5;
@@ -54,11 +66,12 @@ const AddEventForm = (props) => {
       .then(props.getEvents)
   }
 
+
+
   const classes = useStyles();
     return (
         <div id="add_event_form_container">
             <FormControl 
-                
                 variant="outlined"
                 fullWidth={true}
                 required={true}>
