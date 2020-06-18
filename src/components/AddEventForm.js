@@ -20,18 +20,6 @@ const AddEventForm = (props) => {
     const [eventType, setEventType] = useState('');
     const [eventDetails, setEventDetails] = useState('');
     const [eventDate, setEventDate] = useState(new Date());
-    // const [selected] = useState(props.selected)
-
-// const turnEdit =() => {
-//     props.selected !== null ? 
-//         (setEventName(props.selected.eventName),
-//         setEventType(props.selected.eventType),
-//         setEventDetails(props.selected.eventDetails),
-//         setEventDate(props.selected.eventDate))
-//         : ""
-//     }
-
-        // console.log("selected ", props.selected)
 
     const StyledButton = styled(Button)`
         background-color: #6772e5;
@@ -56,7 +44,7 @@ const AddEventForm = (props) => {
     };
 
   function addNewEvent(){
-      fetch(`http://localhost:5005/api/events`,{
+      fetch(`${process.env.REACT_APP_API_URL}/api/events`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json"

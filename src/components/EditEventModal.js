@@ -23,7 +23,7 @@ const EditModal = (props) => {
     const [eventDate, setEventDate] = useState(props.event.eventDate);
 
     const editInventory = () => {
-        fetch(`http://localhost:5005/api/events/${props.event._id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.event._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
