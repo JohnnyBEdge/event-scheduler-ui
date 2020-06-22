@@ -11,7 +11,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import styled from 'styled-components';
 
 
 
@@ -46,18 +45,6 @@ const EditModal = (props) => {
         };
     };
 
-    const StyledButton = styled(Button)`
-    background-color: #6772e5;
-    color: #fff;
-    width: 100%;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    height: 60px;
-    margin: 0 auto;
-    margin-top: 15px;
-    &:hover {
-        background-color: #5469d4;
-}`;
-
       
     const useStyles = makeStyles((theme) => ({
         paper: {
@@ -79,7 +66,18 @@ const EditModal = (props) => {
         },
         modal: {
             marginTop: "-40px"
-        }
+        },
+        editButton: {
+            backgroundColor: "#6772e5",
+            color: "#fff",
+            width: "100%",
+            boxShadow: "0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08)",
+            height: "60px",
+            margin: "0 auto",
+            marginTop: "15px"
+            // & :hover {
+            //     background-color: "#5469d4"
+        } 
       }));
 
     const classes = useStyles();
@@ -109,7 +107,6 @@ const EditModal = (props) => {
                             value={eventName} 
                             onChange={({target}) => setEventName(target.value)}
                             label="eventName" 
-                            helperText="Incorrect entry."
                             />
                     </FormControl>
             <br/>
@@ -165,13 +162,14 @@ const EditModal = (props) => {
                             />
                     </FormControl>
 
-                <StyledButton
+                <Button
+                    className={classes.editButton}
                     variant="contained"
                     color="primary"
                     startIcon={<EditOutlinedIcon /> }
                     onClick={() => editInventory()}
                 >Update
-                </StyledButton>                                                   
+                </Button>                                                   
                 </div>
 
 

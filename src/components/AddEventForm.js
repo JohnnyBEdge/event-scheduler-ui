@@ -11,7 +11,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import { DateTimePicker } from "@material-ui/pickers";
-import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 
 const AddEventForm = (props) => {
@@ -21,22 +20,19 @@ const AddEventForm = (props) => {
     const [eventDetails, setEventDetails] = useState('');
     const [eventDate, setEventDate] = useState(new Date());
 
-    const StyledButton = styled(Button)`
-        background-color: #6772e5;
-        color: #fff;
-        width: 100%;
-        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-        height: 60px;
-        margin: 0 auto;
-        margin-top: 15px;
-        &:hover {
-            background-color: #5469d4;
-    }`;
-
     const useStyles = makeStyles({
         input: {
           width: '98%',
         },
+        button: {
+            backgroundColor: "#6772e5",
+            color: "#fff",
+            width: "100%",
+            boxShadow: "0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08)",
+            height: "60px",
+            margin: "0 auto",
+            marginTop: "15px"
+        }
       });
 
     const handleDateChange = (date) => {
@@ -52,8 +48,8 @@ const AddEventForm = (props) => {
         body: JSON.stringify({eventName, eventType, eventDetails, eventDate})
       }).then(setEventName(''),setEventType(''),setEventDetails(''),setEventDate(new Date()))
       .then(props.getEvents)
+      .then()
   }
-
 
 
   const classes = useStyles();
@@ -70,7 +66,6 @@ const AddEventForm = (props) => {
                     value={eventName} 
                     onChange={({target}) => setEventName(target.value)}
                     label="eventName" 
-                    helperText="Incorrect entry."
                     />
             </FormControl>
             <br/>
@@ -100,7 +95,6 @@ const AddEventForm = (props) => {
 
             <FormControl 
                 className={classes.input}
-                // style = {{width: 100}}
                 fullWidth={true}
             >
                 <TextField
@@ -132,13 +126,14 @@ const AddEventForm = (props) => {
                     />
             </FormControl>
 
-            <StyledButton
+            <Button
+                className={classes.button}
                 variant="contained"
                 color="primary"
                 startIcon={<AddIcon />}
                 onClick={() => addNewEvent()}
             >{props.eventMode}
-            </StyledButton>
+            </Button>
         </div>
     )
 };

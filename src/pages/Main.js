@@ -5,36 +5,27 @@ import AddEventForm from '../components/AddEventForm';
 import EditEventModal from '../components/EditEventModal';
 import '../styling/main.css';
 
-
 import moment from 'moment';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-
-
-
 
 const Main = () => {
 
     const [events, setEvents] = useState([]);
-    const [error, setError] = useState(false);
     const [expanded, setExpanded] = useState(false);
     const [expandForm, setExpandForm] = useState(false);
     const [current, setCurrent] = useState(0);
-    const [eventMode, setMode] = useState("Add Event");
-    const [selected, setSelected] = useState("")
+    const [eventMode] = useState("Add Event");
+    const [selected] = useState("")
 
 
     async function getEvents(){
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/events`);
+         const res = await fetch(`${process.env.REACT_APP_API_URL}/api/events`);
             res.json()
             .then(res => setEvents(res))
-            .catch(err => setError(err)); 
     };
-
 
     const handleChange = (id) => (event, isExpanded) => {
         setExpanded(isExpanded ? id : false);
@@ -42,12 +33,6 @@ const Main = () => {
 
     const handleExpandedForm = () => {
         setExpandForm(expandForm ? false : true);
-    }
-
-    const toggleMode = () => {
-        eventMode === "Add Event" ?
-        setMode("Update Event")
-        : setMode("Add Event")
     };
     
 
@@ -67,7 +52,7 @@ const Main = () => {
         });
         
     return localDateString +" "+ localTimeString;
-    
+
     };
 
 
@@ -102,8 +87,9 @@ const Main = () => {
 
     const displayEvent = sorted.map((event) => {
         return  <ExpansionPanel 
-                    expanded={expanded == event._id} 
-                    onChange={handleChange(event._id)}>
+                    expanded={expanded === event._id} 
+                    onChange={handleChange(event._id)}
+                    key={event._id}>
                     <ExpansionPanelSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
@@ -130,7 +116,6 @@ const Main = () => {
                                     id={event._id} 
                                     refresh={getEvents}
                                 />
-
                             </div>
                         </div>
 

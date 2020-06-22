@@ -1,15 +1,10 @@
-import React, {useState} from 'react';
+import React from 'react';
 import '../styling/date-view.css'
-
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const DateView = (props) => {
     const views = ['Today', 'This Week', 'This Month', 'All Events'];
-
-    // const [current, setCurrent] = useState(0)
 
     const handleNext = () => {
         if(props.current === views.length-1){
@@ -28,13 +23,11 @@ const DateView = (props) => {
 
 
     return(
-        < >
             <div id="date_view">
                 <NavigateBeforeIcon id="before" onClick={() => handlePrev()} />
                 <div id="view_display">{views[props.current]}</div>
                 <NavigateNextIcon id="next" onClick={() => handleNext()}/>
             </div>
-        </>
     )
 };
 
