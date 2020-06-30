@@ -70,17 +70,23 @@ const Main = () => {
     function isMonth(date){
       return moment(date).month() === moment().month() && moment(date).year() === moment().year();
     };
+    function isPast(date){
+        return moment(date).day() < moment().month() && moment(date).year() === moment().year();
+      };
+  
 
     const filtered = () => {
         if(current === 0){
-            return events.filter(date => isToday(date.eventDate))
+            return events.filter(date => isToday(date.eventDate));
           } else if(current === 1){
-            return events.filter(date => isWeek(date.eventDate))
+            return events.filter(date => isWeek(date.eventDate));
           } else if(current === 2){
-            return events.filter(date => isMonth(date.eventDate))
+            return events.filter(date => isMonth(date.eventDate));
+          } else if(current === 3){
+              return events.filter(date => isPast(date.eventDate));
           } else {
               return events;
-          }
+          };
     };
     
     const sorted = filtered().sort((a,b) => new Date(a.eventDate) - new Date(b.eventDate))

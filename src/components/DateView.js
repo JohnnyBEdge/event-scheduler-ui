@@ -4,7 +4,7 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 const DateView = (props) => {
-    const views = ['Today', 'This Week', 'This Month', 'All Events'];
+    const views = ['Today', 'This Week', 'This Month', 'All Events', 'Past Events'];
 
     const handleNext = () => {
         if(props.current === views.length-1){
