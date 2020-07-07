@@ -58,3 +58,9 @@
     margin: 7px;
     width: 88vw;
 }
+
+.alarm {
+    position: relative;
+    left: 200px;
+    top: 12px;
+}

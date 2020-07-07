@@ -10,6 +10,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 
 const Main = () => {
 
@@ -99,7 +100,7 @@ const Main = () => {
           };
     };
     
-    const sorted = filtered().sort((a,b) => new Date(a.eventDate) - new Date(b.eventDate))
+    const sorted = filtered().sort((a,b) => new Date(a.eventDate) - new Date(b.eventDate));
 
     const displayEvent = sorted.map((event) => {
         return  <ExpansionPanel 
@@ -111,10 +112,12 @@ const Main = () => {
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
+                        
                         <div key={event.id} className="expansion-panel-summary">
                             <p className="event-name">{event.eventName}</p>
                             <p className={"event-date"}> {formatDate(event.eventDate)}</p>
                         </div>
+                        {event.reminder === true ? <AlarmOnIcon className="alarm"/> : ""}
 
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails >
