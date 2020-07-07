@@ -20,11 +20,11 @@ const Main = () => {
     const [eventMode] = useState("Add Event");
     const [selected] = useState("");
 
-
     async function getEvents(){
          const res = await fetch(`${process.env.REACT_APP_API_URL}/api/events`);
             res.json()
             .then(res => setEvents(res))
+            .then(handleAlerts())
     };
 
     const handleChange = (id) => (event, isExpanded) => {
@@ -55,10 +55,19 @@ const Main = () => {
 
     };
 
+    function handleAlerts(){
+        events.forEach(event => {
+            if(event.alert === true && moment(event.eventDate).format() <= moment().format()){
+                alert("Dont forget! ", event.eventName)
+                };
+        }) 
+    };
+
 
     useEffect(() => {
         getEvents();
-    },[]);
+        handleAlerts();
+    }, []);
 
 
     function isToday(date){

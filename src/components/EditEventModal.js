@@ -21,9 +21,22 @@ const EditModal = (props) => {
     const [eventDetails, setEventDetails] = useState(props.event.eventDetails);
     const [eventDate, setEventDate] = useState(props.event.eventDate);
 
-    const editInventory = () => {
+    const editEvent = () => {
         fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.event._id}`, {
             method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({eventName, eventType, eventDetails, eventDate})
+        })
+        .then(() => props.refresh())
+        .then(() => toggleModal())
+        .then(props.handleChange())
+    };
+
+    const editViaPut = () => {
+        fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.event._id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -93,7 +106,6 @@ const EditModal = (props) => {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 className={classes.modal}
-                
                 >
 
                 <div className={classes.paper} id="edit_modal">
@@ -102,7 +114,7 @@ const EditModal = (props) => {
                         variant="outlined"
                         fullWidth={true}
                         required={true}>
-                        <InputLabel >Event Name</InputLabel>
+                        <InputLabel>Event Name</InputLabel>
                         <OutlinedInput 
                             className={classes.input}
                             id="component-outlined" 
@@ -169,8 +181,18 @@ const EditModal = (props) => {
                     variant="contained"
                     color="primary"
                     startIcon={<EditOutlinedIcon /> }
-                    onClick={() => editInventory()}
-                >Update
+                    onClick={() => editEvent()}
+                >Update via PATCH
+                </Button> 
+
+{/* remove this button after presentation and remove "via PATCH" above */}
+                <Button
+                    className={classes.editButton}
+                    variant="contained"
+                    color="primary"
+                    startIcon={<EditOutlinedIcon /> }
+                    onClick={() => editViaPut()}
+                >Update via PUT
                 </Button>                                                   
                 </div>
 
