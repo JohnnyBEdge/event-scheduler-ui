@@ -8,7 +8,8 @@ const DeleteEvent = (props) => {
             fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.id}`,{
                 method: "DELETE"
             }).then(response => response.json())
-            .then(props.refresh)
+            .then(resData => console.log('handle delete resData ', resData))
+            // .then(props.refresh)
         }
     }
 

@@ -92,9 +92,10 @@ const EditModal = (props) => {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 className={classes.modal}
+                
                 >
 
-                <div className={classes.paper}>
+                <div className={classes.paper} id="edit_modal">
                     <h2 id="simple-modal-title">Edit Event</h2>
                     <FormControl 
                         variant="outlined"

@@ -18,7 +18,7 @@ const Main = () => {
     const [expandForm, setExpandForm] = useState(false);
     const [current, setCurrent] = useState(0);
     const [eventMode] = useState("Add Event");
-    const [selected] = useState("")
+    const [selected] = useState("");
 
 
     async function getEvents(){
@@ -71,7 +71,8 @@ const Main = () => {
       return moment(date).month() === moment().month() && moment(date).year() === moment().year();
     };
     function isPast(date){
-        return moment(date).day() < moment().month() && moment(date).year() === moment().year();
+        console.log("past",  moment().format())
+        return moment(date).format() < moment().format();
       };
   
 
