@@ -48,7 +48,7 @@ const AddEventForm = (props) => {
         body: JSON.stringify({eventName, eventType, eventDetails, eventDate})
       }).then(setEventName(''),setEventType(''),setEventDetails(''),setEventDate(new Date()))
       .then(props.getEvents)
-      .then()
+      .then(props.handleExpandedForm)
   }
 
 

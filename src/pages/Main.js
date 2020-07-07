@@ -117,7 +117,8 @@ const Main = () => {
                             <div className="event-functions">
                                 <EditEventModal 
                                     event={event}
-                                    refresh={getEvents} 
+                                    refresh={getEvents}
+                                    handleChange={handleChange} 
                                 />
                                 <DeleteEvent 
                                     id={event._id} 
@@ -155,7 +156,7 @@ const Main = () => {
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
-                        <AddEventForm getEvents={getEvents} eventMode={eventMode} selected={selected}/>
+                        <AddEventForm getEvents={getEvents} eventMode={eventMode} selected={selected} handleExpandedForm={handleExpandedForm}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
         </div>

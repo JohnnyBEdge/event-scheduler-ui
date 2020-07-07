@@ -31,6 +31,7 @@ const EditModal = (props) => {
         })
         .then(() => props.refresh())
         .then(() => toggleModal())
+        .then(props.handleChange())
     };
 
     const handleDateChange = (date) => {
