@@ -9,6 +9,7 @@ const DeleteEvent = (props) => {
                 method: "DELETE"
             }).then(response => response.json())
             .then(resData => console.log('handle delete resData ', resData))
+            .then(props.handleChange())
             // .then(props.refresh)
         }
     }

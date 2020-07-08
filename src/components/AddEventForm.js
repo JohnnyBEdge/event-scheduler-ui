@@ -21,7 +21,11 @@ const AddEventForm = (props) => {
     const [eventType, setEventType] = useState('');
     const [eventDetails, setEventDetails] = useState('');
     const [eventDate, setEventDate] = useState(new Date());
-    const [reminder, setReminder] = useState(false)
+    const [reminder, setReminder] = useState(false);
+    const [newEvent, setNewEvent] = useState({})
+    // const [events, setEvents] = useState(JSON.parse(localStorage.getItem("events")));
+
+    // console.log("events from add", events)
 
     const useStyles = makeStyles({
         input: {
@@ -54,7 +58,9 @@ const AddEventForm = (props) => {
         },
         body: JSON.stringify({eventName, eventType, eventDetails, eventDate, reminder})
       }).then(setEventName(''),setEventType(''),setEventDetails(''),setEventDate(new Date()), setReminder(false))
-      .then(props.getEvents)
+      //replace getEvents (update) by using localStorage
+    //   .then(props.getEvents)
+    //   .then()
       .then(props.handleExpandedForm)
   }
 

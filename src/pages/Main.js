@@ -24,9 +24,12 @@ const Main = () => {
     async function getEvents(){
          const res = await fetch(`${process.env.REACT_APP_API_URL}/api/events`);
             res.json()
-            .then(res => setEvents(res))
-            .then(handleAlerts())
+            .then(res => localStorage.setItem('events', JSON.stringify(res)))
+            .then(setEvents(JSON.parse(localStorage.getItem('events'))))
+            // .then(handleAlerts())
     };
+
+    console.log("events", events)
 
     const handleChange = (id) => (event, isExpanded) => {
         setExpanded(isExpanded ? id : false);
@@ -56,18 +59,18 @@ const Main = () => {
 
     };
 
-    function handleAlerts(){
-        events.forEach(event => {
-            if(event.alert === true && moment(event.eventDate).format() <= moment().format()){
-                alert("Dont forget! ", event.eventName)
-                };
-        }) 
-    };
+    // function handleAlerts(){
+    //     events.forEach(event => {
+    //         if(event.alert === true && moment(event.eventDate).format() <= moment().format()){
+    //             alert("Dont forget! ", event.eventName)
+    //             };
+    //     }) 
+    // };
 
 
     useEffect(() => {
         getEvents();
-        handleAlerts();
+        // handleAlerts();
     }, []);
 
 
@@ -81,7 +84,6 @@ const Main = () => {
       return moment(date).month() === moment().month() && moment(date).year() === moment().year();
     };
     function isPast(date){
-        console.log("past",  moment().format())
         return moment(date).format() < moment().format();
       };
   
@@ -135,6 +137,7 @@ const Main = () => {
                                 <DeleteEvent 
                                     id={event._id} 
                                     refresh={getEvents}
+                                    handleChange={handleChange}
                                 />
                             </div>
                         </div>
@@ -145,7 +148,6 @@ const Main = () => {
     })
 
     return (
-        
         <div id="main_container">
             <DateView 
                 setCurrent={setCurrent}
@@ -163,7 +165,7 @@ const Main = () => {
                         id="add_event_panel_summary"
                         >
                         <div >
-                            <p id="add_event_btn">+{eventMode}</p>
+                            <p id="add_event_btn">+Add Event</p>
                         </div>
                     </ExpansionPanelSummary>
 

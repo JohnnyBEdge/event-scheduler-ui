@@ -11,6 +11,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 
@@ -20,6 +22,11 @@ const EditModal = (props) => {
     const [eventType, setEventType] = useState(props.event.eventType);
     const [eventDetails, setEventDetails] = useState(props.event.eventDetails);
     const [eventDate, setEventDate] = useState(props.event.eventDate);
+    const [reminder, setReminder] = useState(props.event.reminder);
+
+    const handleReminder = (event) => {
+        setReminder(event.target.checked)
+    };
 
     const editEvent = () => {
         fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.event._id}`, {
@@ -27,7 +34,7 @@ const EditModal = (props) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({eventName, eventType, eventDetails, eventDate})
+            body: JSON.stringify({eventName, eventType, eventDetails, eventDate, reminder})
         })
         .then(() => props.refresh())
         .then(() => toggleModal())
@@ -40,7 +47,7 @@ const EditModal = (props) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({eventName, eventType, eventDetails, eventDate})
+            body: JSON.stringify({eventName})
         })
         .then(() => props.refresh())
         .then(() => toggleModal())
@@ -174,6 +181,20 @@ const EditModal = (props) => {
                             disablePast={true}
                             inputVariant="outlined"
                             />
+                    </FormControl>
+
+                    <FormControl component="fieldset" className={classes.formControl}>
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={reminder}
+                                onChange={handleReminder}
+                                name="reminderB"
+                                color="primary"
+                            />
+                            }
+                            label="Set Reminder"
+                        />
                     </FormControl>
 
                 <Button
