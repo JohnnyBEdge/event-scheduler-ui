@@ -29,8 +29,6 @@ const Main = () => {
             // .then(handleAlerts())
     };
 
-    console.log("events", events)
-
     const handleChange = (id) => (event, isExpanded) => {
         setExpanded(isExpanded ? id : false);
       };
