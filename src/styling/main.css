@@ -60,7 +60,7 @@
 }
 
 .alarm {
-    position: relative;
-    left: 200px;
-    top: 12px;
+    position: absolute;
+    right: 50px;
+    top: 25px;
 }
