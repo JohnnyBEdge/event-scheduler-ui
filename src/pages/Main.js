@@ -22,18 +22,12 @@ const Main = () => {
     const [selected] = useState("");
 
     async function getEvents(){
-        //  const res = 
          await fetch(`${process.env.REACT_APP_API_URL}/api/events`)
             .then(res => res.json())
             .then(res => {
                 setEvents(res)
-                // console.log("res ",res)
-                // return res
                 })
             
-            // .then(res => setEvents(res))
-            // .then(res => localStorage.setItem('events', JSON.stringify(res)))
-            // .then(setEvents(JSON.parse(localStorage.getItem('events'))))
             // .then(handleAlerts())
     };
 
@@ -82,7 +76,7 @@ const Main = () => {
 
 
     function isToday(date){
-      return moment(date).day() === moment().day() && moment(date).year() === moment().year();
+      return moment(date).day() === moment().day() && moment(date).week() === moment().isoWeek() && moment(date).year() === moment().year();
     };
     function isWeek(date){
       return moment(date).week() === moment().isoWeek() && moment(date).year() === moment().year();
@@ -97,6 +91,11 @@ const Main = () => {
     function addNewEventState(newEvent){
         return events.push(newEvent);
     };
+
+    function handleEventRemoval(id){
+        const indx = events.findIndex(el => el._id === id);
+        return events.splice(indx, 1)
+    }
   
 
     const filtered = () => {
@@ -147,7 +146,7 @@ const Main = () => {
                                 />
                                 <DeleteEvent 
                                     id={event._id} 
-                                    // refresh={getEvents}
+                                    handleEventRemoval={(id) => handleEventRemoval(id)}
                                     event={event}
                                     handleChange={handleChange}
                                 />

@@ -8,7 +8,7 @@ const DeleteEvent = (props) => {
             fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.id}`,{
                 method: "DELETE"
             }).then(response => response.json())
-            .then(resData => console.log('handle delete resData ', resData))
+            .then(resData => resData.deletedCount === 1 ? props.handleEventRemoval(props.id) : console.log("Could not delete"))
             .then(props.handleChange())
             // .then(props.refresh)
         }

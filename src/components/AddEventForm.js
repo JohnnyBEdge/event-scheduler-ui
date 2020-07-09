@@ -59,20 +59,10 @@ const AddEventForm = (props) => {
         body: JSON.stringify({eventName, eventType, eventDetails, eventDate, reminder})
       })
       .then(res => res.json())
-      .then(res => {
-        console.log("res ",res)
-        return res
-        })
+      .then(res => res)
       .then(res => props.newEvent(res))
       .then(setEventName(''),setEventType(''),setEventDetails(''),setEventDate(new Date()), setReminder(false))
-    //   .then(events.push({
-    //         eventName,
-    //         eventType,
-    //         eventDetails,
-    //         eventDate,
-    //         reminder
-    //     }))
-    //   .then(localStorage.setItem('events', JSON.stringify(events)))
+
       .then(props.handleExpandedForm)
   };
 
