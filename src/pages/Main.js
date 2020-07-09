@@ -22,12 +22,21 @@ const Main = () => {
     const [selected] = useState("");
 
     async function getEvents(){
-         const res = await fetch(`${process.env.REACT_APP_API_URL}/api/events`);
-            res.json()
-            .then(res => localStorage.setItem('events', JSON.stringify(res)))
-            .then(setEvents(JSON.parse(localStorage.getItem('events'))))
+        //  const res = 
+         await fetch(`${process.env.REACT_APP_API_URL}/api/events`)
+            .then(res => res.json())
+            .then(res => {
+                setEvents(res)
+                // console.log("res ",res)
+                // return res
+                })
+            
+            // .then(res => setEvents(res))
+            // .then(res => localStorage.setItem('events', JSON.stringify(res)))
+            // .then(setEvents(JSON.parse(localStorage.getItem('events'))))
             // .then(handleAlerts())
     };
+
 
     const handleChange = (id) => (event, isExpanded) => {
         setExpanded(isExpanded ? id : false);
@@ -84,6 +93,10 @@ const Main = () => {
     function isPast(date){
         return moment(date).format() < moment().format();
       };
+
+    function addNewEventState(newEvent){
+        return events.push(newEvent);
+    };
   
 
     const filtered = () => {
@@ -134,7 +147,8 @@ const Main = () => {
                                 />
                                 <DeleteEvent 
                                     id={event._id} 
-                                    refresh={getEvents}
+                                    // refresh={getEvents}
+                                    event={event}
                                     handleChange={handleChange}
                                 />
                             </div>
@@ -168,7 +182,12 @@ const Main = () => {
                     </ExpansionPanelSummary>
 
                     <ExpansionPanelDetails>
-                        <AddEventForm getEvents={getEvents} eventMode={eventMode} selected={selected} handleExpandedForm={handleExpandedForm}/>
+                        <AddEventForm 
+                            getEvents={getEvents} 
+                            eventMode={eventMode} 
+                            newEvent={(event) => addNewEventState(event)}
+                            selected={selected} 
+                            handleExpandedForm={handleExpandedForm}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
         </div>
