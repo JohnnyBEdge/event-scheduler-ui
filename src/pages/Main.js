@@ -25,9 +25,9 @@ const Main = () => {
          await fetch(`${process.env.REACT_APP_API_URL}/api/events`)
             .then(res => res.json())
             .then(res => {
-                setEvents(res)
-                })
-            
+                setEvents(res);
+                handleAlerts(res);
+            })
             // .then(handleAlerts())
     };
 
@@ -60,18 +60,17 @@ const Main = () => {
 
     };
 
-    // function handleAlerts(){
-    //     events.forEach(event => {
-    //         if(event.alert === true && moment(event.eventDate).format() <= moment().format()){
-    //             alert("Dont forget! ", event.eventName)
-    //             };
-    //     }) 
-    // };
+    function handleAlerts(events){
+        events.forEach(event => {
+            if(event.reminder && moment(event.eventDate).format() <= moment().format()){
+                alert("Dont forget! "+ event.eventName)
+            };
+        }) 
+    };
 
 
     useEffect(() => {
         getEvents();
-        // handleAlerts();
     }, []);
 
 
