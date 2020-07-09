@@ -91,11 +91,15 @@ const Main = () => {
     function addNewEventState(newEvent){
         return events.push(newEvent);
     };
-
     function handleEventRemoval(id){
         const indx = events.findIndex(el => el._id === id);
         return events.splice(indx, 1)
-    }
+    };
+    function handleEdit(id, updatedEvent){
+        const indx = events.findIndex(el => el._id === id);
+        return events.splice(indx, 1, updatedEvent)
+    };
+
   
 
     const filtered = () => {
@@ -125,7 +129,7 @@ const Main = () => {
                         id="panel1a-header"
                     >
                         
-                        <div key={event.id} className="expansion-panel-summary">
+                        <div  className="expansion-panel-summary">
                             <p className="event-name">{event.eventName}</p>
                             <p className={"event-date"}> {formatDate(event.eventDate)}</p>
                         </div>
@@ -141,7 +145,7 @@ const Main = () => {
                             <div className="event-functions">
                                 <EditEventModal 
                                     event={event}
-                                    refresh={getEvents}
+                                    handleEdit={(id, updatedEvent) => handleEdit(id, updatedEvent)}
                                     handleChange={handleChange} 
                                 />
                                 <DeleteEvent 

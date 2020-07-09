@@ -36,20 +36,29 @@ const EditModal = (props) => {
             },
             body: JSON.stringify({eventName, eventType, eventDetails, eventDate, reminder})
         })
-        .then(() => props.refresh())
+        .then((res) => res.json())
+        .then(
+            resData => resData.matchedCount === 1 ? 
+            props.handleEdit(props.event._id, {eventName, eventType, eventDetails, eventDate, reminder})
+            : console.log("could not edit"))
         .then(() => toggleModal())
         .then(props.handleChange())
     };
 
+    // Delete this fx after presentation, just for show
     const editViaPut = () => {
         fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.event._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({eventName})
+            body: JSON.stringify({eventName, eventDate})
         })
-        .then(() => props.refresh())
+        .then((res) => res.json())
+        .then(
+            resData => resData.matchedCount === 1 ? 
+            props.handleEdit(props.event._id, {eventName, eventDate})
+            : console.log("could not edit"))
         .then(() => toggleModal())
         .then(props.handleChange())
     };
@@ -213,7 +222,7 @@ const EditModal = (props) => {
                     color="primary"
                     startIcon={<EditOutlinedIcon /> }
                     onClick={() => editViaPut()}
-                >Update via PUT
+                >Update Title via PUT
                 </Button>                                                   
                 </div>
 

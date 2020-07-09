@@ -22,10 +22,6 @@ const AddEventForm = (props) => {
     const [eventDetails, setEventDetails] = useState('');
     const [eventDate, setEventDate] = useState(new Date());
     const [reminder, setReminder] = useState(false);
-    const [newEvent, setNewEvent] = useState("test")
-    // const [events] = useState(JSON.parse(localStorage.getItem("events")));
-
-    // console.log("events from add", events)
 
     const useStyles = makeStyles({
         input: {

@@ -10,9 +10,8 @@ const DeleteEvent = (props) => {
             }).then(response => response.json())
             .then(resData => resData.deletedCount === 1 ? props.handleEventRemoval(props.id) : console.log("Could not delete"))
             .then(props.handleChange())
-            // .then(props.refresh)
-        }
-    }
+        };
+    };
 
     return (
         <DeleteOutlinedIcon  color="error" onClick={() =>{handleDelete()}}/>
