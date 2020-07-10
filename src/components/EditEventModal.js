@@ -57,7 +57,7 @@ const EditModal = (props) => {
         .then((res) => res.json())
         .then(
             resData => resData.matchedCount === 1 ? 
-            props.handleEdit(props.event._id, {eventName, eventDate})
+            props.handleEdit(props.event._id, {eventName, eventType, eventDetails, eventDate, reminder})
             : console.log("could not edit"))
         .then(() => toggleModal())
         .then(props.handleChange())
@@ -222,7 +222,7 @@ const EditModal = (props) => {
                     color="primary"
                     startIcon={<EditOutlinedIcon /> }
                     onClick={() => editViaPut()}
-                >Update Title via PUT
+                >Update via PUT
                 </Button>                                                   
                 </div>
 
