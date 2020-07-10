@@ -58,7 +58,6 @@ const AddEventForm = (props) => {
       .then(res => res)
       .then(res => props.newEvent(res))
       .then(setEventName(''),setEventType(''),setEventDetails(''),setEventDate(new Date()), setReminder(false))
-
       .then(props.handleExpandedForm)
   };
 

@@ -28,6 +28,7 @@ const Main = () => {
                 setEvents(res);
                 handleAlerts(res);
             })
+            .then(console.log("events ",events))
     };
 
 
@@ -61,18 +62,17 @@ const Main = () => {
 
     function handleAlerts(events){
         events.forEach(event => {
-            // if(event.reminder && moment(event.eventDate).format() <= moment().format()){
             if(moment(event.eventDate).day() === moment().day() && moment(event.eventDate).week() === moment().isoWeek() && moment(event.eventDate).year() === moment().year()){
                 alert("Dont forget! "+ event.eventName)
             };
         }) 
     };
 
+    const logEvents = () => {console.log("events ", events)}
 
     useEffect(() => {
         getEvents();
     }, []);
-
 
     function isToday(date){
       return moment(date).day() === moment().day() && moment(date).week() === moment().isoWeek() && moment(date).year() === moment().year();
@@ -96,7 +96,7 @@ const Main = () => {
     };
     function handleEdit(id, updatedEvent){
         const indx = events.findIndex(el => el._id === id);
-        return events.splice(indx, 1, updatedEvent)
+        return events.splice(indx, 1, {_id:id, ...updatedEvent})
     };
 
   

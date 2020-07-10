@@ -52,7 +52,7 @@ const EditModal = (props) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({eventName, eventDate})
+            body: JSON.stringify({eventName, eventType, eventDetails, eventDate, reminder})
         })
         .then((res) => res.json())
         .then(
