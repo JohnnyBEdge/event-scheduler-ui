@@ -62,7 +62,7 @@ const Main = () => {
 
     function handleAlerts(events){
         events.forEach(event => {
-            if(moment(event.eventDate).day() === moment().day() && moment(event.eventDate).week() === moment().isoWeek() && moment(event.eventDate).year() === moment().year()){
+            if(event.reminder && moment(event.eventDate).day() === moment().day() && moment(event.eventDate).week() === moment().isoWeek() && moment(event.eventDate).year() === moment().year()){
                 alert("Dont forget! "+ event.eventName)
             };
         }) 

@@ -38,7 +38,7 @@ const EditModal = (props) => {
         })
         .then((res) => res.json())
         .then(
-            resData => resData.matchedCount === 1 ? 
+            resData => resData.modifiedCount === 1 ? 
             props.handleEdit(props.event._id, {eventName, eventType, eventDetails, eventDate, reminder})
             : console.log("could not edit"))
         .then(() => toggleModal())
@@ -56,7 +56,7 @@ const EditModal = (props) => {
         })
         .then((res) => res.json())
         .then(
-            resData => resData.matchedCount === 1 ? 
+            resData => resData.modifiedCount === 1 ? 
             props.handleEdit(props.event._id, {eventName, eventType, eventDetails, eventDate, reminder})
             : console.log("could not edit"))
         .then(() => toggleModal())
