@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/event-scheduler-ui/static/css/main.b83f9d7f.chunk.css",
-    "main.js": "/event-scheduler-ui/static/js/main.27e7d02d.chunk.js",
-    "main.js.map": "/event-scheduler-ui/static/js/main.27e7d02d.chunk.js.map",
+    "main.js": "/event-scheduler-ui/static/js/main.98788b30.chunk.js",
+    "main.js.map": "/event-scheduler-ui/static/js/main.98788b30.chunk.js.map",
     "runtime-main.js": "/event-scheduler-ui/static/js/runtime-main.10d80841.js",
     "runtime-main.js.map": "/event-scheduler-ui/static/js/runtime-main.10d80841.js.map",
     "static/js/2.19a7c461.chunk.js": "/event-scheduler-ui/static/js/2.19a7c461.chunk.js",
     "static/js/2.19a7c461.chunk.js.map": "/event-scheduler-ui/static/js/2.19a7c461.chunk.js.map",
     "index.html": "/event-scheduler-ui/index.html",
-    "precache-manifest.811e6b75e88241deefd37765023be9ed.js": "/event-scheduler-ui/precache-manifest.811e6b75e88241deefd37765023be9ed.js",
+    "precache-manifest.b7f98310dd8df06eb5ca35157dea5305.js": "/event-scheduler-ui/precache-manifest.b7f98310dd8df06eb5ca35157dea5305.js",
     "service-worker.js": "/event-scheduler-ui/service-worker.js",
     "static/css/main.b83f9d7f.chunk.css.map": "/event-scheduler-ui/static/css/main.b83f9d7f.chunk.css.map",
     "static/js/2.19a7c461.chunk.js.LICENSE.txt": "/event-scheduler-ui/static/js/2.19a7c461.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.10d80841.js",
     "static/js/2.19a7c461.chunk.js",
     "static/css/main.b83f9d7f.chunk.css",
-    "static/js/main.27e7d02d.chunk.js"
+    "static/js/main.98788b30.chunk.js"
   ]
 }
