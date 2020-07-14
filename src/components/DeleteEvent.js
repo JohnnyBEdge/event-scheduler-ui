@@ -5,7 +5,7 @@ const DeleteEvent = (props) => {
 
     const handleDelete = () => {
         if(window.confirm("Are you sure you want to remove this event?")){
-            fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.id}`,{
+            fetch(`https://events-scheduler.herokuapp.com/api/events/api/events/${props.id}`,{
                 method: "DELETE"
             }).then(response => response.json())
             .then(resData => resData.deletedCount === 1 ? props.handleEventRemoval(props.id) : console.log("Could not delete"))

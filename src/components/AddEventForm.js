@@ -47,7 +47,7 @@ const AddEventForm = (props) => {
     };
 
   function addNewEvent(){
-      fetch(`${process.env.REACT_APP_API_URL}/api/events`,{
+      fetch(`https://events-scheduler.herokuapp.com/api/events/api/events/`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json"

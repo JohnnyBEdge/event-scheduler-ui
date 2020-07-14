@@ -29,7 +29,7 @@ const EditModal = (props) => {
     };
 
     const editEvent = () => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.event._id}`, {
+        fetch(`https://events-scheduler.herokuapp.com/api/events/api/events/${props.event._id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
