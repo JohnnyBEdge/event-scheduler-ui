@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a2ad56c3756e54910ec6dc5e2610c873",
+    "revision": "19dafe91aaf4dbfe35c68d4df0a6ead2",
     "url": "/event-scheduler-ui/index.html"
   },
   {
-    "revision": "f3c5fdcbf28e91704529",
+    "revision": "2702170be835ad4306d6",
     "url": "/event-scheduler-ui/static/css/main.b83f9d7f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/event-scheduler-ui/static/js/2.19a7c461.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f3c5fdcbf28e91704529",
-    "url": "/event-scheduler-ui/static/js/main.b8b16136.chunk.js"
+    "revision": "2702170be835ad4306d6",
+    "url": "/event-scheduler-ui/static/js/main.27e7d02d.chunk.js"
   },
   {
     "revision": "7415de976c55eb8e39ce",
