@@ -47,7 +47,7 @@ const EditModal = (props) => {
 
     // Delete this fx after presentation, just for show
     const editViaPut = () => {
-        fetch(`${process.env.REACT_APP_API_URL}/api/events/${props.event._id}`, {
+        fetch(`https://events-scheduler.herokuapp.com/api/events/${props.event._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
