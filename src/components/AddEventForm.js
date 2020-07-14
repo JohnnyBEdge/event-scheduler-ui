@@ -47,7 +47,7 @@ const AddEventForm = (props) => {
     };
 
   function addNewEvent(){
-      fetch(`https://events-scheduler.herokuapp.com/api/events/api/`,{
+      fetch(`https://events-scheduler.herokuapp.com/api/events`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json"
