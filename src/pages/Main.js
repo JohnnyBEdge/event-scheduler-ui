@@ -22,7 +22,8 @@ const Main = () => {
     const [selected] = useState("");
 
     async function getEvents(){
-         await fetch(`${process.env.REACT_APP_API_URL}/api/events`)
+         await fetch(`https://events-scheduler.herokuapp.com/api/events`)
+        //  await fetch(`${process.env.REACT_APP_API_URL}/api/events`)
             .then(res => res.json())
             .then(res => {
                 setEvents(res);
